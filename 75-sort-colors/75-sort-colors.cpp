@@ -11,7 +11,7 @@ public:
                 }
             }
         }
-        */
+        *//*
         int z=0,o=0,t=0;
         for(int i=0;i<nums.size();i++){
             if(nums[i]==0) z++;
@@ -33,7 +33,32 @@ public:
              nums.push_back(2);
          }
         
-        
+        nice solution*/
+        int tmp = 0, low = 0, mid = 0, high = nums.size() - 1;
+    
+        while(mid <= high)
+        {
+            if(nums[mid] == 0)
+            {
+                tmp = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = tmp;
+                low++;
+                mid++;
+            }
+            else if(nums[mid] == 1)
+            {
+                mid++;
+            }
+            else if(nums[mid] == 2)
+            {
+                tmp = nums[high];
+                nums[high] = nums[mid];
+                nums[mid] = tmp;
+                high--;
+            }
+        }
+      
         
     }
 };
