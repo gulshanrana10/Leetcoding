@@ -18,23 +18,43 @@ public:
         ListNode* temp1=head;
         ListNode* temp2=head->next;
         ListNode* temp3=temp2;
-       /*
-            
-        while(temp2->next->next){
+        int count=0;
+        while(temp1->next){
+           count++;
+            temp1=temp1->next;
+        }
+        count++;
+        temp1=head;
+        if(count%2==0){
+        while(temp2->next){
             temp1->next=temp2->next;
             temp1=temp1->next;
-            if(temp1->next){temp2->next=temp1->next;
-            temp2=temp2->next;}
+            temp2->next=temp1->next;
+            temp2=temp2->next;
             
             }
         temp1->next=temp2->next;
-        temp1=temp1->next;
-        if(temp1){
+        //temp1=temp1->next;
+        if(temp1->next){
             temp2->next=temp2->next->next;
             temp2=temp2->next;}
-     //   temp1->next=temp3;
-        return head;*/
-        int count=0;
+        temp1->next=temp3;
+        }
+        else{
+        while(temp2->next->next){
+            temp1->next=temp2->next;
+            temp1=temp1->next;
+            temp2->next=temp1->next;
+            temp2=temp2->next;
+            
+            }
+        temp1->next=temp2->next;
+            temp2->next=NULL;
+        temp1=temp1->next;
+        temp1->next=temp3;
+        }
+        return head;
+       /*
         while(temp1->next){
            count++;
             temp1=temp1->next;
@@ -73,6 +93,6 @@ public:
         }
         vec1[vec1.size()-1]->next=NULL;
         }
-        return head;
+        return head;*/
     }
 };
