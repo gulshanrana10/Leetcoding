@@ -1,16 +1,21 @@
-public class Solution {
-    public int maximalSquare(char[][] matrix) {
-        int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
-        int[][] dp = new int[rows + 1][cols + 1];
-        int maxsqlen = 0;
-        for (int i = 1; i <= rows; i++) {
-            for (int j = 1; j <= cols; j++) {
-                if (matrix[i-1][j-1] == '1'){
-                    dp[i][j] = Math.min(Math.min(dp[i][j - 1], dp[i - 1][j]), dp[i - 1][j - 1]) + 1;
-                    maxsqlen = Math.max(maxsqlen, dp[i][j]);
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.empty()) {
+            return 0;
+        }
+        int m = matrix.size(), n = matrix[0].size(), sz = 0;
+        vector<vector<int>> dp(m, vector<int>(n, 0));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!i || !j || matrix[i][j] == '0') {
+                    dp[i][j] = matrix[i][j] - '0';
+                } else {
+                    dp[i][j] = min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1])) + 1;
                 }
-                else dp[i][j]=0;
+                sz = max(dp[i][j], sz);
             }
         }
-        return maxsqlen * maxsqlen;
-    }}
+        return sz * sz;
+    }
+};
