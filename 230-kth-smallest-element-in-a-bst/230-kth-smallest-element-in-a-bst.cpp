@@ -11,19 +11,22 @@
  */
 class Solution {
 public:
-    vector<int> q;
-    
-    void process(TreeNode* root){
-        if(root){
-            q.push_back(root->val);
-            process(root->left);
-            process(root->right);
+   int ans=0;
+    int p=0;
+    void process(TreeNode* root,int l,int k){
+        if(root){  
+            
+            process(root->left,l,k);
+            ans++;
+            if(ans==k)p=root->val;
+            if(l==k)ans=root->val;
+            process(root->right,l,k);
+  
         }
     }
     int kthSmallest(TreeNode* root, int k) {
-        process(root);
-            sort(q.begin(),q.end());
-            return q[k-1];
+        process(root,0,k);
+        return p;
             
     }
 };
