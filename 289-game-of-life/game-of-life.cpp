@@ -21,11 +21,11 @@ public:
                 
                 if(board[i][j]==0){
                     if(cnt==3)mat[i][j]=1;
-                    else mat[i][j]=board[i][j];
+
                 }
                 else {
                     if(cnt<2)mat[i][j]=0;
-                    else if(cnt==2 || cnt==3)mat[i][j]=1;
+                    
                     else if(cnt>3)mat[i][j]=0;
                 }
             }
